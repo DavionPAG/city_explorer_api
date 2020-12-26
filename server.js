@@ -24,9 +24,14 @@ app.get('/', (request, response) => {
 
 app.get('/location', locationHandler);
 app.get('/weather', wtrHandler);
-app.use('*', (request, response) => {
-  response.send('Nonexistent');
-});
+app.use('*', errorHandler);
+
+function errorHandler(request, response){
+  response.send({
+    status: 500,
+    responseText: 'Sorry, something went wrong'
+  });
+}
 
 function locationHandler(request, response) {
   // response.send('I work'); ***Test***
@@ -44,8 +49,8 @@ function wtrHandler(request, response){
   let wtrDataArr = [];
   weatherData.data.forEach(wtrData => {
     wtrDataArr.push(new Weather(wtrData));
+    const city = request.query.city;
   });
-  console.log(wtrDataArr);
   response.send(wtrDataArr);
 }
 
