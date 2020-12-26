@@ -14,13 +14,14 @@ app.use(cors());
 
 //Routes
 
-app.get('/', (request, response) => {
-  response.send('Hellooo Folks');
-});
-
+app.get('/', homeHndlr);
 app.get('/location', locationHandler);
 app.get('/weather', wtrHandler);
 app.use('*', errorHandler);
+
+function homeHndlr(request, response) {
+  response.send('Hellooo Folks');
+}
 
 function errorHandler(request, response){
   response.send({
