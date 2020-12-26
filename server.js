@@ -62,7 +62,7 @@ function Location(city, locationData) {
 //Weather Constructor
 
 function Weather(data){
-  this.forcast = data.weather.description;
+  this.forecast = data.weather.description;
   this.time = data.datetime;
 }
 
