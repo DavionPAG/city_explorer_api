@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 //dependencies
 
@@ -12,33 +12,41 @@ const { response } = require('express');
 
 //App setup
 
-const app = express()
+const app = express();
 const PORT= process.env.PORT;
 app.use(cors());
 
 //Route
 
 app.get('/', (request, response) => {
-  response.send('Hellooo Folks')
-})
+  response.send('Hellooo Folks');
+});
 
-app.get('/location', locationHandler)
-
+app.get('/location', locationHandler);
+app.get('/weather', wtrHandler);
 app.use('*', (request, response) => {
   response.send('Nonexistent');
-})
+});
 
 function locationHandler(request, response) {
-  // response.send('I work'); ***Test*** 
-  const locationData = require('./data/location.json')
-  
+  // response.send('I work'); ***Test***
+  const locationData = require('./data/location.json');
+
   //get data that was input in search field
   const city = request.query.city;
-  const sendData = new Location(city, locationData)
+  const sendData = new Location(city, locationData);
 
   response.send(sendData);
+}
 
-
+function wtrHandler(request, response){
+  const weatherData = require('./data/weather.json');
+  let wtrDataArr = [];
+  weatherData.data.forEach(wtrData => {
+    wtrDataArr.push(new Weather(wtrData));
+  });
+  console.log(wtrDataArr);
+  response.send(wtrDataArr);
 }
 
 
@@ -51,8 +59,15 @@ function Location(city, locationData) {
   this.longitude = locationData[0].lon;
 }
 
+//Weather Constructor
+
+function Weather(data){
+  this.forcast = data.weather.description;
+  this.date = data.datetime;
+}
+
 //start server
 
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
-})
+});
