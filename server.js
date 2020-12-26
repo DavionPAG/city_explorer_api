@@ -3,12 +3,8 @@
 //dependencies
 
 require('dotenv').config();
-
 const express = require('express');
-
 const cors = require('cors');
-const { response } = require('express');
-
 
 //App setup
 
@@ -16,7 +12,7 @@ const app = express();
 const PORT= process.env.PORT;
 app.use(cors());
 
-//Route
+//Routes
 
 app.get('/', (request, response) => {
   response.send('Hellooo Folks');
