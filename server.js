@@ -63,7 +63,8 @@ function Location(city, locationData) {
 
 function Weather(data){
   this.forecast = data.weather.description;
-  this.time = data.datetime;
+  let date = Date.parse(data.datetime);
+  this.time = new Date(date).toDateString();
 }
 
 //start server
