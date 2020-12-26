@@ -54,7 +54,7 @@ function wtrHandler(request, response){
 
 function Location(city, locationData) {
   this.search_query = city;
-  this.format_query = locationData[0].display_name;
+  this.formatted_query = locationData[0].display_name;
   this.latitude = locationData[0].lat;
   this.longitude = locationData[0].lon;
 }
@@ -63,7 +63,7 @@ function Location(city, locationData) {
 
 function Weather(data){
   this.forcast = data.weather.description;
-  this.date = data.datetime;
+  this.time = data.datetime;
 }
 
 //start server
