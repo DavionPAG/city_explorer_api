@@ -30,10 +30,13 @@ app.use('*', (request, response) => {
 
 function locationHandler(request, response) {
   // response.send('I work'); ***Test*** 
-  const locationData = require('./lab/data/location.json')
+  const locationData = require('./data/location.json')
   
   //get data that was input in search field
   const city = request.query.city;
+  const sendData = new Location(city, locationData)
+
+  response.send(sendData);
 
 
 }
@@ -41,7 +44,12 @@ function locationHandler(request, response) {
 
 //location constructor
 
-function Location(city, locationData)
+function Location(city, locationData) {
+  this.search_query = city;
+  this.format_query = locationData[0].display_name;
+  this.latitude = locationData[0].lat;
+  this.longitude = locationData[0].lon;
+}
 
 //start server
 
