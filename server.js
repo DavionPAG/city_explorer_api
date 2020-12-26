@@ -49,7 +49,6 @@ function wtrHandler(request, response){
   let wtrDataArr = [];
   weatherData.data.forEach(wtrData => {
     wtrDataArr.push(new Weather(wtrData));
-    const city = request.query.city;
   });
   response.send(wtrDataArr);
 }
