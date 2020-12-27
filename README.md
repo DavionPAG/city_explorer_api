@@ -1,46 +1,62 @@
 # city_eplorer_api
 
 **Author**: Davion Garcia
-**Version**: 1.0.0
+**Version**: 1.0.4
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+
+- Allow a user to search for a location and then present a Map along with information about the area.
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+
+- Build a server that includes: .env | cors | express
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+
+- Built using Node modules
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource.
+<!-- <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
+
+01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credits and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
--->
+
+- Google, W3Schools, StackOverFlow
 
 ---
 
-- Number and name of feature:
+## Features
 
-- Estimate of time needed to complete: 5hrs
+- Number and name of feature: 1 | Locations
+
+- Estimate of time needed to complete: 3hrs
 
 - Start time: 1900 24 Dec
 
-- Finish time:
+- Finish time: 2000 24 Dec
 
-- Actual time needed to complete:
+- Actual time needed to complete: 1hr
 
 ---
 
-- Number and name of feature:
+- Number and name of feature: 2 | Weather
 
-- Estimate of time needed to complete: 5hrs
+- Estimate of time needed to complete: 2hrs
 
-- Start time: 1900 24 Dec
+- Start time: 2000 25 Dec
 
-- Finish time:
+- Finish time: 2100 25 Dec
 
-- Actual time needed to complete:
+- Actual time needed to complete: 1hr
+
+- Number and name of feature: 2 | Weather
+
+- Estimate of time needed to complete: 2hrs
+
+- Start time: 2100 25 Dec
+
+- Finish time: 2100 27 Dec
+
+- Actual time needed to complete: 4hrs
