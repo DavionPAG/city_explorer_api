@@ -9,7 +9,7 @@ const cors = require('cors');
 //App setup
 
 const app = express();
-const PORT= process.env.PORT;
+const PORT = process.env.PORT;
 app.use(cors());
 
 //Routes
@@ -23,11 +23,8 @@ function homeHndlr(request, response) {
   response.send('Hellooo Folks');
 }
 
-function errorHandler(request, response){
-  response.send({
-    status: 500,
-    responseText: 'Sorry, something went wrong'
-  });
+function errorHandler(request, response) {
+  response.status(500).send('Sorry, something went wrong');
 }
 
 function locationHandler(request, response) {
@@ -41,7 +38,7 @@ function locationHandler(request, response) {
   response.send(sendData);
 }
 
-function wtrHandler(request, response){
+function wtrHandler(request, response) {
   const weatherData = require('./data/weather.json');
   let wtrDataArr = [];
   weatherData.data.forEach(wtrData => {
@@ -62,7 +59,7 @@ function Location(city, locationData) {
 
 //Weather Constructor
 
-function Weather(data){
+function Weather(data) {
   this.forecast = data.weather.description;
   let date = Date.parse(data.datetime);
   this.time = new Date(date).toDateString();
