@@ -5,11 +5,12 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const superagent = require('superagent');
 
 //App setup
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.use(cors());
 
 //Routes
@@ -24,45 +25,53 @@ function homeHndlr(request, response) {
 }
 
 function locationHandler(request, response) {
-  // response.send('I work'); ***Test***
-  const locationData = require('./data/location.json');
-
-  //get data that was input in search field
+  const key = process.env.GEOCODE_API_KEY;
   const city = request.query.city;
-  const sendData = new Location(city, locationData);
+  const url = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${city}&format=json`;
 
-  response.send(sendData);
+  superagent.get(url)
+    .then(data => {
+
+      const locData = data.body[0];
+      const loc = new Location(city, locData);
+      response.status(200).send(loc);
+      console.log(loc);
+    });
+
+}
+
+//location constructor
+function Location(city, locData) {
+  this.search_query = city;
+  this.formatted_query = locData.display_name;
+  this.latitude = locData.lat;
+  this.longitude = locData.lon;
 }
 
 function wtrHandler(request, response) {
-  const weatherData = require('./data/weather.json');
+  const key = process.env.WEATHER_API_KEY;
+  let lon = request.query.longitude;
+  let lat = request.query.latitude;
+  let url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${key}&days=5`;
 
-  let wtrDataArr = weatherData.data.map(wtrData => {
-    return new Weather(wtrData);
-  });
-  response.send(wtrDataArr);
-}
-
-
-//location constructor
-
-function Location(city, locationData) {
-  this.search_query = city;
-  this.formatted_query = locationData[0].display_name;
-  this.latitude = locationData[0].lat;
-  this.longitude = locationData[0].lon;
+  superagent.get(url)
+    .then(data => {
+      let wtrDataArr = data.body.data.map(wtrData => {
+        return new Weather(wtrData);
+      });
+      response.status(200).send(wtrDataArr);
+      console.log(wtrDataArr);
+    });
 }
 
 //Weather Constructor
-
-function Weather(data) {
-  this.forecast = data.weather.description;
-  let date = Date.parse(data.datetime);
-  this.time = new Date(date).toDateString();
+function Weather(wtr) {
+  this.forecast = wtr.weather.description;
+  this.time = new Date(wtr.datetime).toDateString();
 }
 
 function errorHandler(request, response) {
-  response.status(500).send('Sorry, something went wrong');
+  response.status(500).send(`Sorry, something went wrong`);
 }
 
 //start server
