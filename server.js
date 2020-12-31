@@ -23,10 +23,6 @@ function homeHndlr(request, response) {
   response.send('Hellooo Folks');
 }
 
-function errorHandler(request, response) {
-  response.status(500).send('Sorry, something went wrong');
-}
-
 function locationHandler(request, response) {
   // response.send('I work'); ***Test***
   const locationData = require('./data/location.json');
@@ -40,9 +36,9 @@ function locationHandler(request, response) {
 
 function wtrHandler(request, response) {
   const weatherData = require('./data/weather.json');
-  let wtrDataArr = [];
-  weatherData.data.forEach(wtrData => {
-    wtrDataArr.push(new Weather(wtrData));
+
+  let wtrDataArr = weatherData.data.map(wtrData => {
+    return new Weather(wtrData);
   });
   response.send(wtrDataArr);
 }
@@ -63,6 +59,10 @@ function Weather(data) {
   this.forecast = data.weather.description;
   let date = Date.parse(data.datetime);
   this.time = new Date(date).toDateString();
+}
+
+function errorHandler(request, response) {
+  response.status(500).send('Sorry, something went wrong');
 }
 
 //start server
