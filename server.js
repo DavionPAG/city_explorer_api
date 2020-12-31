@@ -6,6 +6,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const superagent = require('superagent');
+const { request, response } = require('express');
 
 //App setup
 
@@ -18,7 +19,7 @@ app.use(cors());
 app.get('/', homeHndlr);
 app.get('/location', locationHandler);
 app.get('/weather', wtrHandler);
-app.use('*', errorHandler);
+
 
 function homeHndlr(request, response) {
   response.send('Hellooo Folks');
@@ -70,9 +71,9 @@ function Weather(wtr) {
   this.time = new Date(wtr.datetime).toDateString();
 }
 
-function errorHandler(request, response) {
+app.use('*', (request, response) => {
   response.status(500).send(`Sorry, something went wrong`);
-}
+});
 
 //start server
 
