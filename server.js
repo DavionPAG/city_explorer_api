@@ -6,7 +6,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const superagent = require('superagent');
-const { request, response } = require('express');
 
 //App setup
 
@@ -37,6 +36,14 @@ function locationHandler(request, response) {
       const loc = new Location(city, locData);
       response.status(200).send(loc);
       console.log(loc);
+    })
+
+    
+
+
+    .catch(error => {
+      response.status(500).send('Something went worng');
+      console.log(error);
     });
 
 }
@@ -62,6 +69,10 @@ function wtrHandler(request, response) {
       });
       response.status(200).send(wtrDataArr);
       console.log(wtrDataArr);
+    })
+    .catch(error => {
+      response.status(500).send('Something went worng');
+      console.log(error);
     });
 }
 
@@ -71,8 +82,9 @@ function Weather(wtr) {
   this.time = new Date(wtr.datetime).toDateString();
 }
 
+// ***error Handler***
 app.use('*', (request, response) => {
-  response.status(500).send(`Sorry, something went wrong`);
+  response.status(404).send(`Sorry, something went wrong`);
 });
 
 //start server
