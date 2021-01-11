@@ -10,6 +10,7 @@
 ## Getting Started
 
 - Build a server that includes: .env | cors | express
+- Use SQL to save and return data recieved from APIs 
 
 ## Architecture
 
@@ -17,17 +18,19 @@
 
 ## Change Log
 
-<!-- <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
-
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+- Dec 24 => created server
+- Dec 25 => added location/weather APIs
+- Jan 10 => added database features: read/write
 
 ## Credits and Collaborations
 
 - Google, W3Schools, StackOverFlow
+- Code review/Remo
+- Taylor Thorton, Authur Lozano
 
 ---
 
-## Features
+## Features Lab 7
 
 - Number and name of feature: 1 | Locations
 
@@ -51,12 +54,40 @@
 
 - Actual time needed to complete: 1hr
 
-- Number and name of feature: 2 | Weather
+---
+
+## Features Lab 8
+
+- Number and name of feature: 2 | Database
 
 - Estimate of time needed to complete: 2hrs
 
-- Start time: 2100 25 Dec
+- Start time: 1800 10 Jan
 
-- Finish time: 2100 27 Dec
+- Finish time: 1900 10 Jan
 
-- Actual time needed to complete: 4hrs
+- Actual time needed to complete: 1hrs
+
+---
+
+- Number and name of feature: 2 | Server
+
+- Estimate of time needed to complete: 2hrs
+
+- Start time: 1900 10 Jan
+
+- Finish time: 2115 10 Jan
+
+- Actual time needed to complete: 2hrs+
+
+---
+
+- Number and name of feature: 2 | Deploy
+
+- Estimate of time needed to complete: 1hr
+
+- Start time: 2130 10 Jan
+
+- Finish time: 2200 10 Jan
+
+- Actual time needed to complete: <1hr
