@@ -86,7 +86,7 @@
 
 - Estimate of time needed to complete: 1hr
 
-- Start time: 2130 10 Jan
+- Start time: 2115 10 Jan
 
 - Finish time: 2200 10 Jan
 
