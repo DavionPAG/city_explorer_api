@@ -10,7 +10,7 @@
 ## Getting Started
 
 - Build a server that includes: .env | cors | express
-- Use SQL to save and return data recieved from APIs 
+- Use SQL to save and return data recieved from APIs
 
 ## Architecture
 
@@ -21,6 +21,8 @@
 - Dec 24 => created server
 - Dec 25 => added location/weather APIs
 - Jan 10 => added database features: read/write
+- Jan 11 => added movieDB API
+- Jan 12 => added yelp API + Pagination
 
 ## Credits and Collaborations
 
@@ -58,7 +60,7 @@
 
 ## Features Lab 8
 
-- Number and name of feature: 2 | Database
+- Number and name of feature: 1 | Database
 
 - Estimate of time needed to complete: 2hrs
 
@@ -82,7 +84,7 @@
 
 ---
 
-- Number and name of feature: 2 | Deploy
+- Number and name of feature: 3 | Deploy
 
 - Estimate of time needed to complete: 1hr
 
@@ -91,3 +93,41 @@
 - Finish time: 2200 10 Jan
 
 - Actual time needed to complete: <1hr
+
+---
+
+## Features Lab 9
+
+- Number and name of feature: 1 | Movies
+
+- Estimate of time needed to complete: 1hrs
+
+- Start time: 2122 11 Jan
+
+- Finish time: 0054 12 Jan
+
+- Actual time needed to complete: 1hrs
+
+---
+
+- Number and name of feature: 2 | Yelp
+
+- Estimate of time needed to complete: 1hrs
+
+- Start time: 2115 12 Jan
+
+- Finish time: 2220 12 Jan
+
+- Actual time needed to complete: 1hr+
+
+---
+
+- Number and name of feature: 3 | Pagination
+
+- Estimate of time needed to complete: 3hr
+
+- Start time: 2220 12 Jan
+
+- Finish time: 2319 12 Jan
+
+- Actual time needed to complete: 1hr
