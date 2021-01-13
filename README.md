@@ -106,7 +106,7 @@
 
 - Finish time: 0054 12 Jan
 
-- Actual time needed to complete: 1hrs
+- Actual time needed to complete: 3.5hrs
 
 ---
 
