@@ -7,22 +7,18 @@ const express = require('express');
 const cors = require('cors');
 const superagent = require('superagent');
 const pg = require('pg');
-const { request } = require('express');
 
 
 //App setup
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 const client = new pg.Client(process.env.DATABASE_URL);
 app.use(cors());
 
 
-
 client.on('error', err => {
   throw err;
 });
-
 
 
 //Routes
@@ -33,7 +29,6 @@ app.get('/movies', moviesHandler);
 app.get('/yelp', yelpHandler);
 
 
-
 function homeHndlr(req, res) {
   res.send('Hellooo Folks');
 }
@@ -42,7 +37,6 @@ function locationHandler(req, res) {
   const key = process.env.GEOCODE_API_KEY;
   const city = req.query.city;
   const url = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${city}&format=json`;
-
 
   let SQL = 'SELECT * FROM search WHERE search_query = $1';
   let safeValues = ['search_query'];
@@ -65,7 +59,6 @@ function locationHandler(req, res) {
 
             client.query(SQL, safeValues)
               .then(results => console.log('Saved to DB'));
-
             res.status(200).send(loc);
           })
           .catch(error => {
@@ -98,10 +91,10 @@ function wtrHandler(req, res) {
 function yelpHandler(req, res) {
   const key = process.env.YELP_API_KEY;
   let city = req.query.search_query;
+  let pageNow = 5;
   let page = req.query.page || 1;
-  let offSet = ((page - 1) * page + 1);
+  let offSet = ((page - 1) * pageNow + 1);
   let url = `https://api.yelp.com/v3/businesses/search?`;
-
 
   superagent.get(url)
     .auth(key, { type: 'bearer' })
@@ -124,30 +117,24 @@ function yelpHandler(req, res) {
 
 }
 
-
 function moviesHandler(req, res) {
   const key = process.env.MOVIE_API_KEY;
   let city = req.query.search_query;
   let url = `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${city}`;
 
   superagent.get(url)
-
     .then(data => {
       console.log(city);
       let movieArr = data.body.results.map(movie => {
-
         let baseUrl = 'https://image.tmdb.org/t/p/w200'; //baseURL + fileSize
         let filePath = movie.poster_path;
         let imageUrl = baseUrl + filePath;
 
         return new Movies(movie, imageUrl);
       });
-
       res.status(200).json(movieArr);
-
     })
     .catch(error => {
-
       res.status(500).send('Muchas problemas');
       console.log(error);
     });
@@ -193,10 +180,7 @@ app.use('*', (req, res) => {
   res.status(404).send(`Sorry, something went wrong`);
 });
 
-
-
 //Connect Database => start server
-
 client.connect()
   .then(() => {
     app.listen(PORT, () => {
